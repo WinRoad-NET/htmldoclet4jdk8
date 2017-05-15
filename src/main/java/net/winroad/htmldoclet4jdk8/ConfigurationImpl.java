@@ -56,47 +56,8 @@ public class ConfigurationImpl extends AbstractConfiguration {
 	/**
 	 * True if command line option "-noframe" is used. Default value is false.
 	 */
+	@edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD")
 	public boolean noframe = false;
-
-	/**
-	 * Argument for command line option "-dubboconfigpath".
-	 */
-	public String dubboconfigpath = "";
-
-	/**
-	 * Argument for command line option "-springcontextconfigpath".
-	 */
-	public String springcontextconfigpath = "";
-
-	/**
-	 * Argument for command line option "-excludedurlsxpath".
-	 */
-	public String excludedurlsxpath = "";
-
-	/**
-	 * Argument for command line option "-branchname".
-	 */
-	public String branchname = "";
-
-	/**
-	 * Argument for command line option "-systemname".
-	 */
-	public String systemname = "";
-
-	/**
-	 * Argument for command line option "-codeurl".
-	 */
-	public String codeurl = "";
-
-	/**
-	 * Argument for command line option "-searchengine".
-	 */
-	public String searchengine = "http://127.0.0.1:8080/solr/apidocs";
-
-	/**
-	 * Argument for command line option "-buildid".
-	 */
-	public String buildid = "";
 
 	/**
 	 * Unique Resource Handler for this package.
