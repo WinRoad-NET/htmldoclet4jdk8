@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.winroad.wrdoclet.AbstractDoclet;
 import net.winroad.wrdoclet.data.OpenAPI;
 import net.winroad.wrdoclet.data.WRDoc;
@@ -250,6 +253,15 @@ public class HtmlDoclet extends AbstractDoclet {
 			for (OpenAPI openAPI : openAPIList) {
 				Map<String, Object> hashMap = new HashMap<String, Object>();
 				hashMap.put("openAPI", openAPI);
+				ObjectMapper mapper = new ObjectMapper();
+				mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				String oasJSONStr = null;
+				try {
+					oasJSONStr = mapper.writeValueAsString(this.convertToOAS(openAPI, this.configurationEx.branchname));
+				} catch (JsonProcessingException e) {
+					logger.error(e);
+				}
+				hashMap.put("OASV3", oasJSONStr);
 				String tagsStr = openAPI.getTags().toString();
 				// trim '[' and ']'
 				hashMap.put("tags", tagsStr.substring(1, tagsStr.length() - 1));
