@@ -110,6 +110,12 @@ public class ConfigurationImpl extends AbstractConfiguration {
 				springcontextconfigpath = os[1];
 			} else if (opt.equals("-excludedurlsxpath")) {
 				excludedurlsxpath = os[1];
+			} else if (opt.equals("-showannotationlist")) {
+				showAnnotationList = os[1];
+			} else if (opt.equals("-authkeyword")) {
+				authKeyword = os[1];
+			} else if (opt.equals("-noauthkeyword")) {
+				noAuthKeyword = os[1];
 			} else if (opt.equals("-systemname")) {
 				systemname = os[1];
 			} else if (opt.equals("-branchname")) {
@@ -183,6 +189,9 @@ public class ConfigurationImpl extends AbstractConfiguration {
 				|| option.equals("-dubboconfigpath")
 				|| option.equals("-springcontextconfigpath")
 				|| option.equals("-excludedurlsxpath")
+				|| option.equals("-showannotationlist")
+				|| option.equals("-authkeyword")
+				|| option.equals("-noauthkeyword")
 				|| option.equals("-systemname") || option.equals("-branchname")
 				|| option.equals("-searchengine") || option.equals("-buildid")
 				|| option.equals("-codeurl")) {
