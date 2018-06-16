@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.winroad.wrdoclet.AbstractDoclet;
 import net.winroad.wrdoclet.data.OpenAPI;
+import net.winroad.wrdoclet.data.RequestMapping;
 import net.winroad.wrdoclet.data.WRDoc;
 import net.winroad.wrdoclet.doc.API;
 import net.winroad.wrdoclet.doc.Doc;
@@ -110,10 +111,7 @@ public class HtmlDoclet extends AbstractDoclet {
 				api.setUrl(openAPI.getRequestMapping().getUrl());
 				api.setTooltip(openAPI.getRequestMapping().getTooltip());
 				api.setMethodType(openAPI.getRequestMapping().getMethodType());
-				String filename = generateWRAPIFileName(openAPI
-						.getRequestMapping().getContainerName(), openAPI
-						.getRequestMapping().getUrl(), openAPI
-						.getRequestMapping().getMethodType());
+				String filename = generateWRAPIFileName(openAPI.getRequestMapping());
 				api.setFilepath(filename);
 				api.setBrief(openAPI.getBrief());
 				doc.getAPIs().add(api);
@@ -225,18 +223,6 @@ public class HtmlDoclet extends AbstractDoclet {
 				Util.combineFilePath(this.configurationEx.destDirName, "img"));
 	}
 
-	protected String generateWRAPIFileName(String container, String url,
-			String methodType) {
-		return StringUtils.strip(
-				(container + '-' + url + (methodType == null ? '-'
-						: '-' + methodType + '-')).replace('/', '-')
-						.replace('\\', '-').replace(':', '-').replace('*', '-')
-						.replace('?', '-').replace('"', '-').replace('<', '-')
-						.replace('>', '-').replace('|', '-').replace('{', '-')
-						.replace('}', '-'), "-")
-				+ ".html";
-	}
-
 	/**
 	 * Generate the tag documentation.
 	 * 
@@ -281,10 +267,7 @@ public class HtmlDoclet extends AbstractDoclet {
 							this.configurationEx.buildid);
 				}
 				this.logger.info("buildid:" + hashMap.get("buildID"));
-				String filename = generateWRAPIFileName(openAPI
-						.getRequestMapping().getContainerName(), openAPI
-						.getRequestMapping().getUrl(), openAPI
-						.getRequestMapping().getMethodType());
+				String filename = generateWRAPIFileName(openAPI.getRequestMapping());
 				hashMap.put("filePath", filename);
 				if (!filesGenerated.contains(filename)) {
 					this.configurationEx
