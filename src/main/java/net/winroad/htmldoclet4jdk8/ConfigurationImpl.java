@@ -126,6 +126,10 @@ public class ConfigurationImpl extends AbstractConfiguration {
 				codeurl = os[1];
 			} else if (opt.equals("-buildid")) {
 				buildid = os[1];
+			} else if (opt.equals("-cmzfieldinclude")) {
+				cmzFieldInclude = os[1];
+			} else if (opt.equals("-cmzfieldexclude")) {
+				cmzFieldExclude = os[1];
 			}
 		}
 		// if branchname is not specified, try to resolve it from codeurl.
@@ -194,6 +198,7 @@ public class ConfigurationImpl extends AbstractConfiguration {
 				|| option.equals("-noauthkeyword")
 				|| option.equals("-systemname") || option.equals("-branchname")
 				|| option.equals("-searchengine") || option.equals("-buildid")
+				|| option.equals("-cmzfieldinclude") || option.equals("-cmzfieldexclude")
 				|| option.equals("-codeurl")) {
 			return 2;
 		} else {
